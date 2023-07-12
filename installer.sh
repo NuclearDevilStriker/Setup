@@ -74,9 +74,8 @@ sleep 2
 /etc/init.d/cron restart
 clear
 echo -----------------------------------------------------
-echo "Installation Finished! Rebooting."
+echo "Installation Finished!"
 echo ------------------------------------------------------
-reboot
 history -c
 else
 echo -----------------------------------------------------
