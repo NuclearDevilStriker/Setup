@@ -648,7 +648,7 @@ chmod 777 /bin/badvpn-udpgw
 ps x | grep 'udpvpn' | grep -v 'grep' || screen -dmS udpvpn /usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 10000 --max-connections-for-client 10 --client-socket-sndbuf 10000
 
 cd /etc/ppp/
-git clone https://github.com/Mygod/dnstt.git
+git clone https://github.com/NuclearDevilStriker/dnstt.git
 cd
 
 wget -O dnstt.sh https://raw.githubusercontent.com/NuclearDevilStriker/Setup/main/dnstt.sh; chmod +x dnstt.sh; dos2unix dnstt.sh; ./dnstt.sh
