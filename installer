@@ -651,7 +651,7 @@ cd /etc/ppp/
 git clone https://github.com/Mygod/dnstt.git
 cd
 
-wget -O installer.sh https://raw.githubusercontent.com/NuclearDevilStriker/Setup/main/installer.sh; chmod +x installer.sh; dos2unix installer.sh; ./installer.sh
+wget -O dnstt.sh https://raw.githubusercontent.com/NuclearDevilStriker/Setup/main/dnstt.sh; chmod +x dnstt.sh; dos2unix dnstt.sh; ./dnstt.sh
 
 
 
@@ -995,3 +995,7 @@ controls
 clear
 display_menu
 ports
+
+echo -e " \e[92m SERVER REBOOT IN 5 Seconds!!!!:\e[0m \e[97m:\e[0m"
+sleep 5
+reboot
