@@ -37,7 +37,7 @@ export GOROOT=/usr/local/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 sleep 2
 cd /etc/ppp/
-git clone https://www.bamsoftware.com/git/dnstt.git
+git clone https://github.com/NuclearDevilStriker/dnstt.git
 cd /etc/ppp/dnstt/dnstt-server
 go build
 sleep 2
