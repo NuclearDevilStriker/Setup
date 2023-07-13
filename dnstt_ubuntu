@@ -14,7 +14,7 @@ echo '
 echo -e " \033[0;35m══════════════════════════════════════════════════════════════════\033[0m"
 read -p "Enter your DNS: " domain
 clear
-if [[ $domain =~ "eftabspanel.net" ]]; then
+if [[ $domain =~ "um-connect.xyz" ]]; then
 
 echo -----------------------------------------------------
 echo Installing Dependencies
