@@ -17,13 +17,15 @@ echo '
    ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  
  '
 echo -e " \033[0;35m══════════════════════════════════════════════════════════════════\033[0m"
-read -p "Enter your DNS: " hostname
 clear
-if [[ $hostname =~ "um-connect.xyz" ]]; then
+echo
+read -p ' ENTER YOUR DOMAIN/HOST: ' hostname
+echo
 
-read -p "Enter your DNS: " domain
 clear
-if [[ $domain =~ "um-connect.xyz" ]]; then
+echo
+read -p ' ENTER YOUR DOMAIN/NAMESERVER: ' domain
+echo
 
 MYIP=$(wget -qO- icanhazip.com);
 genNS=$(echo "$(pwgen 5 1)" | tr '[:upper:]' '[:lower:]')
@@ -32,8 +34,6 @@ dnsresolverName="1.1.1.1"
 dnsresolverType="udp"
 dnsresolver="1.1.1.1:53"
 
-dnsdomain=um-connect.xyz
-dnszone=e4f2a9cc1acd6e2c5f43920976d74819
 
 hostname=$arecord
 domain=$nsrecord
