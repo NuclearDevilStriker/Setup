@@ -70,7 +70,6 @@ export EDITOR=nano
 sleep 2
 echo "@reboot screen -dmS slowdns /etc/ppp/dnstt/dnstt-server/./dnstt-server -udp :53 -privkey-file /etc/ppp/server.key $domain 127.0.0.1:22" >> /etc/crontab
 sleep 2
-/etc/init.d/cron restart
 clear
 echo -----------------------------------------------------
 echo "Installation Finished!"
