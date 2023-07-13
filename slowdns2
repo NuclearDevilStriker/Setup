@@ -6,6 +6,25 @@ apt-get install sudo -y
 apt-get install git -y
 apt install -y dos2unix debconf-utils pwgen mlocate dh-make
 
+clear
+echo -e " \033[0;35m══════════════════════════════════════════════════════════════════\033[0m"
+echo '                                                              
+   ██████╗ ███████╗██╗  ██╗████████╗███████╗██████╗ 
+   ██╔══██╗██╔════╝╚██╗██╔╝╚══██╔══╝██╔════╝██╔══██╗
+   ██║  ██║█████╗   ╚███╔╝    ██║   █████╗  ██████╔╝
+   ██║  ██║██╔══╝   ██╔██╗    ██║   ██╔══╝  ██╔══██╗
+   ██████╔╝███████╗██╔╝ ██╗   ██║   ███████╗██║  ██║
+   ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  
+ '
+echo -e " \033[0;35m══════════════════════════════════════════════════════════════════\033[0m"
+read -p "Enter your DNS: " hostname
+clear
+if [[ $hostname =~ "um-connect.xyz" ]]; then
+
+read -p "Enter your DNS: " domain
+clear
+if [[ $domain =~ "um-connect.xyz" ]]; then
+
 MYIP=$(wget -qO- icanhazip.com);
 genNS=$(echo "$(pwgen 5 1)" | tr '[:upper:]' '[:lower:]')
 secretkey='server'
@@ -16,8 +35,6 @@ dnsresolver="1.1.1.1:53"
 dnsdomain=um-connect.xyz
 dnszone=e4f2a9cc1acd6e2c5f43920976d74819
 
-arecord=$(cat /root/domain)
-nsrecord="$genNS.$dnsdomain"
 hostname=$arecord
 domain=$nsrecord
 
@@ -133,7 +150,7 @@ error_directory /share/squid/errors/templates' >> squid.conf
 fi
 
 #install slowdns
-curl -X POST "https://api.cloudflare.com/client/v4/zones/$dnszone/dns_records" -H "X-Auth-Email: d.eskalarte@gmail.com" -H "X-Auth-Key: 1d0e138b7b9c1368f6cc1b5f8fef94e3c25a8" -H "Content-Type: application/json" --data '{"type":"NS","name":"'"$(echo $nsrecord)"'","content":"'"$(echo $arecord)"'","ttl":1,"priority":0,"proxied":false}' &>/dev/null
+#curl -X POST "https://api.cloudflare.com/client/v4/zones/$dnszone/dns_records" -H "X-Auth-Email: d.eskalarte@gmail.com" -H "X-Auth-Key: 1d0e138b7b9c1368f6cc1b5f8fef94e3c25a8" -H "Content-Type: application/json" --data '{"type":"NS","name":"'"$(echo $nsrecord)"'","content":"'"$(echo $arecord)"'","ttl":1,"priority":0,"proxied":false}' &>/dev/null
 
 cd /usr/local
 wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
@@ -147,7 +164,6 @@ export DNSDIR=/etc/.dnsquest
 export DNSCONFIG=/root/.dns
 mkdir -m 777 $DNSDIR
 mkdir -m 777 $DNSCONFIG
-echo "password `mkpasswd @@F1r3n3t`" >> $DNSDIR/.sckey
 cd $DNSDIR
 git clone https://www.bamsoftware.com/git/dnstt.git
 
@@ -172,7 +188,16 @@ cd ~
 wget http://firenetvpn.net/script/services -O .services;chmod +x .services;
 echo "@reboot root bash /root/.services" >> /etc/crontab
 
-echo "Hi! this is your server information, Happy Surfing!
+iptables -I INPUT -p udp --dport 5300 -j ACCEPT &>/dev/null;
+iptables -t nat -I PREROUTING -i $(ip route get 8.8.8.8 | awk '/dev/ {f=NR} f&&NR-1==f' RS=" ") -p udp --dport 53 -j REDIRECT --to-ports 5300 &>/dev/null;
+ip6tables -I INPUT -p udp --dport 5300 -j ACCEPT &>/dev/null;
+ip6tables -t nat -I PREROUTING -i $(ip route get 8.8.8.8 | awk '/dev/ {f=NR} f&&NR-1==f' RS=" ") -p udp --dport 53 -j REDIRECT --to-ports 5300 &>/dev/null;
+iptables-save > /etc/iptables.up.rules
+iptables-restore -t < /etc/iptables.up.rules
+netfilter-persistent save
+netfilter-persistent reload
+
+echo -e "Hi! this is your server information, Happy Surfing!
 
 IP : $MYIP
 SSH : 22
@@ -183,22 +208,6 @@ SQUID : 8080
 DNS URL : $domain
 DNS RESOLVER : $dnsresolverName
 DNS PUBLIC KEY : $(cat /root/.dns/server.pub)
------------------------
-
-FB Page : https://facebook.com/firenetphilippines
-
-For issues or suggestions please open an issue on github.
-
-" >> /home/vps/public_html/$secretkey.txt
-
-iptables -I INPUT -p udp --dport 5300 -j ACCEPT &>/dev/null;
-iptables -t nat -I PREROUTING -i $(ip route get 8.8.8.8 | awk '/dev/ {f=NR} f&&NR-1==f' RS=" ") -p udp --dport 53 -j REDIRECT --to-ports 5300 &>/dev/null;
-ip6tables -I INPUT -p udp --dport 5300 -j ACCEPT &>/dev/null;
-ip6tables -t nat -I PREROUTING -i $(ip route get 8.8.8.8 | awk '/dev/ {f=NR} f&&NR-1==f' RS=" ") -p udp --dport 53 -j REDIRECT --to-ports 5300 &>/dev/null;
-iptables-save > /etc/iptables.up.rules
-iptables-restore -t < /etc/iptables.up.rules
-netfilter-persistent save
-netfilter-persistent reload
+-----------------------"
 
 reboot
-
