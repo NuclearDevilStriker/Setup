@@ -1,6 +1,9 @@
 #!/bin/bash
-cp /usr/share/zoneinfo/Asia/Manila /etc/localtime
 
+cp /usr/share/zoneinfo/Asia/Manila /etc/localtime
+apt-get update
+apt-get install sudo -y
+apt-get install git -y
 apt install -y dos2unix debconf-utils pwgen mlocate dh-make
 
 MYIP=$(wget -qO- icanhazip.com);
