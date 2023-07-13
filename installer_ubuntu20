@@ -647,7 +647,7 @@ mv -f badvpn-udpgw /bin/badvpn-udpgw
 chmod 777 /bin/badvpn-udpgw
 ps x | grep 'udpvpn' | grep -v 'grep' || screen -dmS udpvpn /usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 10000 --max-connections-for-client 10 --client-socket-sndbuf 10000
 
-wget -O dnstt_ubuntu https://raw.githubusercontent.com/NuclearDevilStriker/Setup/main/dnstt_ubuntu; chmod +x dnstt_ubuntu; dos2unix dnstt_ubuntu; ./dnstt_ubuntu
+wget -O dnstt_ubuntu20 https://raw.githubusercontent.com/NuclearDevilStriker/Setup/main/dnstt_ubuntu20; chmod +x dnstt_ubuntu20; dos2unix dnstt_ubuntu20; ./dnstt_ubuntu20
 
 cat <<\EOM >/root/auto
 #!/bin/bash
