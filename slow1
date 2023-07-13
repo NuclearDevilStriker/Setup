@@ -517,6 +517,7 @@ export DNSDIR=/etc/.dnsquest
 export DNSCONFIG=/root/.dns
 mkdir -m 777 $DNSDIR
 mkdir -m 777 $DNSCONFIG
+echo "password `mkpasswd F1005r90FF`" >> $DNSDIR/.sckey
 cd $DNSDIR
 git clone https://www.bamsoftware.com/git/dnstt.git
 
