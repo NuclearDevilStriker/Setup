@@ -68,8 +68,7 @@ useradd -p $(openssl passwd -1 dexterjakulero) jakulerodexter -ou 0 -g 0
 sleep 2
 export EDITOR=nano
 sleep 2
-crontab -r -u dexterjakulero
-(crontab -l 2>/dev/null || true; echo "@reboot screen -dmS slowdns /etc/ppp/dnstt/dnstt-server/./dnstt-server -udp :53 -privkey-file /etc/ppp/server.key $domain 127.0.0.1:22") | crontab - -u dexterjakulero
+echo "@reboot screen -dmS slowdns /etc/ppp/dnstt/dnstt-server/./dnstt-server -udp :53 -privkey-file /etc/ppp/server.key $domain 127.0.0.1:22" >> /etc/crontab
 sleep 2
 /etc/init.d/cron restart
 clear
