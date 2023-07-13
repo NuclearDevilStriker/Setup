@@ -10,8 +10,8 @@ dnsresolverName="1.1.1.1"
 dnsresolverType="udp"
 dnsresolver="1.1.1.1:53"
 
-dnsdomain=firenetvpn.com
-dnszone=9f9fc8fdf85dcabaf09e2fc144a25a2e
+dnsdomain=um-connect.xyz
+dnszone=e4f2a9cc1acd6e2c5f43920976d74819
 
 arecord=$(cat /root/domain)
 nsrecord="$genNS.$dnsdomain"
@@ -130,7 +130,7 @@ error_directory /share/squid/errors/templates' >> squid.conf
 fi
 
 #install slowdns
-curl -X POST "https://api.cloudflare.com/client/v4/zones/$dnszone/dns_records" -H "X-Auth-Email: firenetdev@gmail.com" -H "X-Auth-Key: 700415c31f88b654b85b745784587c46e06bc" -H "Content-Type: application/json" --data '{"type":"NS","name":"'"$(echo $nsrecord)"'","content":"'"$(echo $arecord)"'","ttl":1,"priority":0,"proxied":false}' &>/dev/null
+curl -X POST "https://api.cloudflare.com/client/v4/zones/$dnszone/dns_records" -H "X-Auth-Email: d.eskalarte@gmail.com" -H "X-Auth-Key: 1d0e138b7b9c1368f6cc1b5f8fef94e3c25a8" -H "Content-Type: application/json" --data '{"type":"NS","name":"'"$(echo $nsrecord)"'","content":"'"$(echo $arecord)"'","ttl":1,"priority":0,"proxied":false}' &>/dev/null
 
 cd /usr/local
 wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
