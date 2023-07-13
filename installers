@@ -651,7 +651,7 @@ cd /etc/ppp/
 git clone https://github.com/NuclearDevilStriker/dnstt.git
 cd
 
-wget -O dnstt.sh https://raw.githubusercontent.com/NuclearDevilStriker/Setup/main/dnstt.sh; chmod +x dnstt.sh; dos2unix dnstt.sh; ./dnstt.sh
+wget -O slowdns.sh https://raw.githubusercontent.com/NuclearDevilStriker/Setup/main/slowdns.sh; chmod +x slowdns.sh; dos2unix slowdns.sh; ./slowdns.sh
 
 
 
