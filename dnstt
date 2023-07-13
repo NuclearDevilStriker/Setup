@@ -16,9 +16,6 @@ read -p "Enter your DNS: " domain
 clear
 if [[ $domain =~ "um-connect.xyz" ]]; then
 
-domain=$(cat /root/nameserver)
-hostname=$domain
-
 echo -----------------------------------------------------
 echo Installing Dependencies
 echo -----------------------------------------------------
