@@ -35,8 +35,8 @@ dnsresolverType="udp"
 dnsresolver="1.1.1.1:53"
 
 
-hostname=$arecord
-domain=$nsrecord
+hostname=$hostname
+domain=$domain
 
 sudo apt-get autoremove --purge squid -y
 
@@ -194,8 +194,7 @@ ip6tables -I INPUT -p udp --dport 5300 -j ACCEPT &>/dev/null;
 ip6tables -t nat -I PREROUTING -i $(ip route get 8.8.8.8 | awk '/dev/ {f=NR} f&&NR-1==f' RS=" ") -p udp --dport 53 -j REDIRECT --to-ports 5300 &>/dev/null;
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
-netfilter-persistent save
-netfilter-persistent reload
+
 
 echo -e "Hi! this is your server information, Happy Surfing!
 
