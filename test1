@@ -5,7 +5,7 @@ USER='mediatek2_testmic'
 PASS='F1005r90@'
 DBNAME='mediatek2_testmic';
 
-PORT_TCP='1194';;
+PORT_TCP='1194';
 PORT_UDP='53';
 DROPBEAR_PORT='442';
 SSH_PORT='22';
